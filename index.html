@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helena | Web Developer Portfolio</title>
+
+  <!-- =====================================================
+       BOOTSTRAP 5 CSS (loaded via CDN)
+       Bootstrap gives us the grid system, components, and
+       utility classes we use throughout the page.
+  ====================================================== -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- =====================================================
+       GOOGLE FONTS
+       We import two fonts:
+         • Poppins  – used for headings (bold, modern)
+         • Open Sans – used for body text (clean, readable)
+  ====================================================== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =====================================================
+       BOOTSTRAP ICONS (CDN)
+       Gives us icon tags like <i class="bi bi-github"></i>
+       used in the footer and skill badges.
+  ====================================================== -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- =====================================================
+       CUSTOM STYLESHEET  ← MUST come AFTER Bootstrap so
+       our rules override Bootstrap's defaults.
+  ====================================================== -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="80">
+
+  <!-- ============================================================
+       SECTION 1 · HEADER & NAVIGATION
+       Uses Bootstrap's <nav> component with the class "navbar".
+       • navbar-expand-lg  → collapses to hamburger below lg
+       • data-bs-toggle="collapse" links the hamburger button
+         to the menu div so it opens/closes automatically
+  ============================================================= -->
+  <header>
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top custom-navbar">
+      <div class="container">
+
+        <!-- BRAND / LOGO: shows your name on the left -->
+        <a class="navbar-brand fw-bold" href="#home">
+          <span class="brand-dot">&lt;</span>Helena
+          <span class="brand-dot">/&gt;</span>
+        </a>
+
+        <!-- HAMBURGER BUTTON: only visible on small screens.
+             data-bs-target must match the id of the collapsible div -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- COLLAPSIBLE MENU LINKS -->
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT  (<main> is a semantic HTML5 landmark)
+  ============================================================= -->
+  <main>
+
+    <!-- ==========================================================
+         SECTION 2 · HERO / HOME
+         Full-viewport welcoming section.
+         • Uses Bootstrap flex utilities (d-flex, align-items-center)
+           to center content vertically inside a full-height div.
+         • The CTA button uses btn btn-primary (overridden in CSS).
+    =========================================================== -->
+    <section id="home" class="hero-section d-flex align-items-center">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <!-- Left column: text content -->
+          <div class="col-12 col-md-7 hero-text" data-aos="fade-right">
+            <p class="hero-greeting">👋 Hello, World! I'm</p>
+            <h1 class="hero-name">Helena Ninsiima</h1>
+            <h2 class="hero-title">
+              Aspiring <span class="highlight">Web Developer</span>
+            </h2>
+            <p class="hero-bio">
+              A passionate front-end developer in the making, turning ideas
+              into elegant, user-friendly web experiences one line of code
+              at a time.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-buttons mt-4 d-flex flex-wrap gap-3">
+              <a href="#projects" class="btn btn-primary btn-lg custom-btn">
+                <i class="bi bi-grid-3x3-gap me-2"></i>View My Work
+              </a>
+              <a href="#contact" class="btn btn-outline-light btn-lg outline-btn">
+                <i class="bi bi-envelope me-2"></i>Contact Me
+              </a>
+            </div>
+          </div>
+
+          <!-- Right column: profile avatar / image -->
+          <div class="col-12 col-md-5 text-center mt-5 mt-md-0">
+            <div class="hero-image-wrapper">
+              <!-- Replace the src with your actual photo path, e.g.: assets/images/profile.jpg -->
+              <img
+                src="https://ui-avatars.com/api/?name=Helena+Nakato&size=300&background=e94560&color=fff&bold=true&rounded=true"
+                alt="Profile photo of Helena Ninsiima"
+                class="hero-img img-fluid"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 3 · ABOUT ME
+         Two-column layout:
+           col-12 col-md-5  → profile image column
+           col-12 col-md-7  → bio + skills column
+         Bootstrap Badges are used to display skills inline.
+    =========================================================== -->
+    <section id="about" class="about-section py-5">
+      <div class="container">
+
+        <!-- Section heading (reused pattern across all sections) -->
+        <div class="section-title text-center mb-5">
+          <h2>About <span class="highlight">Me</span></h2>
+          <div class="title-underline mx-auto"></div>
+        </div>
+
+        <div class="row align-items-center g-5">
+
+          <!-- About image column -->
+          <div class="col-12 col-md-5 text-center">
+            <img
+              src="https://ui-avatars.com/api/?name=Helena+Ninsiiima&size=350&background=1a1a2e&color=e94560&bold=true"
+              alt="Helena Ninsiima – about photo"
+              class="about-img img-fluid"
+            />
+          </div>
+
+          <!-- Bio and skills column -->
+          <div class="col-12 col-md-7">
+            <h3 class="mb-3">Hi! I'm <span class="highlight">Helena</span></h3>
+            <p class="about-bio">
+              I'm an aspiring Web developer with a genuine love for building things on the web. I enjoy
+              solving design challenges and writing clean, well-structured code
+              that makes websites both beautiful and accessible.
+            </p>
+            <p class="about-bio">
+              When I'm not coding, you'll find me sketching UI mockups,
+              exploring open-source projects, or watching tech talks on YouTube.
+              I'm actively growing my skills and looking for opportunities to
+              collaborate and build cool things!
+            </p>
+
+            <!-- Skills using Bootstrap Badges -->
+            <h5 class="mt-4 mb-3">Technical Skills</h5>
+            <div class="skills-wrap d-flex flex-wrap gap-2">
+              <span class="badge skill-badge"><i class="bi bi-filetype-html me-1"></i>HTML5</span>
+              <span class="badge skill-badge"><i class="bi bi-filetype-css me-1"></i>CSS3</span>
+              <span class="badge skill-badge"><i class="bi bi-bootstrap me-1"></i>Bootstrap</span>
+              <span class="badge skill-badge"><i class="bi bi-filetype-js me-1"></i>JavaScript</span>
+              <span class="badge skill-badge"><i class="bi bi-git me-1"></i>Git & GitHub</span>
+              <span class="badge skill-badge"><i class="bi bi-phone me-1"></i>Responsive Design</span>
+              <span class="badge skill-badge"><i class="bi bi-brush me-1"></i>Figma (Basic)</span>
+              <span class="badge skill-badge"><i class="bi bi-database me-1"></i>SQL (Basic)</span>
+            </div>
+
+            <!-- Soft skills using Bootstrap List Group -->
+            <h5 class="mt-4 mb-3">Soft Skills</h5>
+            <ul class="list-group list-group-flush soft-skills-list">
+              <li class="list-group-item soft-skill-item">
+                <i class="bi bi-check-circle-fill me-2 text-accent"></i>Team Collaboration
+              </li>
+              <li class="list-group-item soft-skill-item">
+                <i class="bi bi-check-circle-fill me-2 text-accent"></i>Problem Solving
+              </li>
+              <li class="list-group-item soft-skill-item">
+                <i class="bi bi-check-circle-fill me-2 text-accent"></i>Attention to Detail
+              </li>
+              <li class="list-group-item soft-skill-item">
+                <i class="bi bi-check-circle-fill me-2 text-accent"></i>Quick Learner
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 4 · PROJECTS / WORK
+         Uses the Bootstrap 12-column grid to create a 3-column
+         card layout that stacks on mobile:
+           col-12        → 1 card per row on mobile
+           col-sm-6      → 2 cards per row on tablet
+           col-lg-4      → 3 cards per row on desktop
+         Each card uses: card-img-top, card-body, card-title,
+         card-text, and a card footer button.
+    =========================================================== -->
+    <section id="projects" class="projects-section py-5">
+      <div class="container">
+
+        <div class="section-title text-center mb-5">
+          <h2>My <span class="highlight">Projects</span></h2>
+          <div class="title-underline mx-auto"></div>
+          <p class="section-subtitle mt-3">A selection of things I've built while learning</p>
+        </div>
+
+        <!-- PROJECT CARDS ROW -->
+        <div class="row g-4">
+
+          <!-- PROJECT CARD 1 -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card project-card h-100">
+              <!-- card-img-top: image at the top of the card -->
+              <img
+                src="https://placehold.co/600x300/1a1a2e/e94560?text=To-Do+App"
+                class="card-img-top"
+                alt="Screenshot of the To-Do List App project"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge project-tag mb-2">JavaScript · CSS</span>
+                <h5 class="card-title">To-Do List App</h5>
+                <p class="card-text flex-grow-1">
+                  A dynamic task manager built with vanilla JavaScript. Features
+                  include adding, deleting, and marking tasks complete — with
+                  data saved in the browser's localStorage.
+                </p>
+                <div class="mt-3 d-flex gap-2">
+                  <a href="#" class="btn btn-sm custom-btn btn-primary">
+                    <i class="bi bi-eye me-1"></i>Live Demo
+                  </a>
+                  <a href="#" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-github me-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 2 -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card project-card h-100">
+              <img
+                src="https://placehold.co/600x300/16213e/e94560?text=Calculator"
+                class="card-img-top"
+                alt="Screenshot of the Calculator App project"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge project-tag mb-2">HTML · CSS · JS</span>
+                <h5 class="card-title">Calculator App</h5>
+                <p class="card-text flex-grow-1">
+                  A fully functional calculator with a clean dark UI. Handles
+                  all basic arithmetic operations and edge cases like division
+                  by zero, with keyboard support.
+                </p>
+                <div class="mt-3 d-flex gap-2">
+                  <a href="#" class="btn btn-sm custom-btn btn-primary">
+                    <i class="bi bi-eye me-1"></i>Live Demo
+                  </a>
+                  <a href="#" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-github me-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 3 -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card project-card h-100">
+              <img
+                src="https://placehold.co/600x300/0f3460/e94560?text=Weather+App"
+                class="card-img-top"
+                alt="Screenshot of the Weather Dashboard project"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge project-tag mb-2">API · Bootstrap</span>
+                <h5 class="card-title">Weather Dashboard</h5>
+                <p class="card-text flex-grow-1">
+                  A responsive weather app that fetches real-time data from the
+                  OpenWeather API. Displays temperature, humidity, conditions,
+                  and a 5-day forecast for any city.
+                </p>
+                <div class="mt-3 d-flex gap-2">
+                  <a href="#" class="btn btn-sm custom-btn btn-primary">
+                    <i class="bi bi-eye me-1"></i>Live Demo
+                  </a>
+                  <a href="#" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-github me-1"></i>Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end .row -->
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 5 · CONTACT FORM
+         Uses Bootstrap Form Controls:
+           form-label, form-control, form-select
+         Layout uses the grid to center a single column form.
+    =========================================================== -->
+    <section id="contact" class="contact-section py-5">
+      <div class="container">
+
+        <div class="section-title text-center mb-5">
+          <h2>Get In <span class="highlight">Touch</span></h2>
+          <div class="title-underline mx-auto"></div>
+          <p class="section-subtitle mt-3">Have a project or just want to say hi? Fill in the form!</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+          <!-- Contact info column -->
+          <div class="col-12 col-md-4 mb-5 mb-md-0">
+            <div class="contact-info">
+              <h5 class="mb-4">Contact Info</h5>
+              <div class="contact-item d-flex align-items-center gap-3 mb-3">
+                <div class="contact-icon">
+                  <i class="bi bi-envelope-fill"></i>
+                </div>
+                <span>lenahninsiima@gmail.com</span>
+              </div>
+              <div class="contact-item d-flex align-items-center gap-3 mb-3">
+                <div class="contact-icon">
+                  <i class="bi bi-telephone-fill"></i>
+                </div>
+                <span>+256 700 123 456</span>
+              </div>
+              <div class="contact-item d-flex align-items-center gap-3 mb-3">
+                <div class="contact-icon">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <span>Kampala, Uganda</span>
+              </div>
+              <div class="contact-socials mt-4 d-flex gap-3">
+                <a href="#" class="social-link" aria-label="GitHub profile">
+                  <i class="bi bi-github"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn profile">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter profile">
+                  <i class="bi bi-twitter-x"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact form column -->
+          <div class="col-12 col-md-7 col-lg-6">
+            <form class="contact-form" novalidate>
+
+              <!-- NAME field -->
+              <div class="mb-3">
+                <label for="contactName" class="form-label">
+                  <i class="bi bi-person me-1"></i>Full Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control custom-input"
+                  id="contactName"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <!-- EMAIL field -->
+              <div class="mb-3">
+                <label for="contactEmail" class="form-label">
+                  <i class="bi bi-envelope me-1"></i>Email Address
+                </label>
+                <input
+                  type="email"
+                  class="form-control custom-input"
+                  id="contactEmail"
+                  placeholder="yourname@example.com"
+                  required
+                />
+              </div>
+
+              <!-- SUBJECT field -->
+              <div class="mb-3">
+                <label for="contactSubject" class="form-label">
+                  <i class="bi bi-chat-dots me-1"></i>Subject
+                </label>
+                <input
+                  type="text"
+                  class="form-control custom-input"
+                  id="contactSubject"
+                  placeholder="What is this about?"
+                />
+              </div>
+
+              <!-- MESSAGE textarea -->
+              <div class="mb-4">
+                <label for="contactMessage" class="form-label">
+                  <i class="bi bi-pencil me-1"></i>Message
+                </label>
+                <textarea
+                  class="form-control custom-input"
+                  id="contactMessage"
+                  rows="5"
+                  placeholder="Write your message here..."
+                  required
+                ></textarea>
+              </div>
+
+              <!-- SUBMIT button -->
+              <button type="submit" class="btn btn-primary custom-btn w-100 btn-lg">
+                <i class="bi bi-send me-2"></i>Send Message
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- /main -->
+
+  <!-- ============================================================
+       SECTION 6 · FOOTER
+       Contains copyright notice and social icon links.
+       Uses Bootstrap flex utilities to align items.
+  ============================================================= -->
+  <footer class="site-footer py-4">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start gy-3">
+
+        <!-- Copyright -->
+        <div class="col-12 col-md-6">
+          <p class="footer-copy mb-0">
+            &copy; 2026 <span class="highlight">Helena Ninsiima</span>. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Social icon links -->
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="footer-socials d-flex justify-content-center justify-content-md-end gap-3">
+            <a href="#" class="footer-social-link" aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Twitter / X">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================
+       BOOTSTRAP 5 JAVASCRIPT (CDN)
+       Must be at the bottom (before </body>).
+       Enables the hamburger menu, scroll-spy, and other
+       interactive Bootstrap components.
+  ====================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- =====================================================
+       SMOOTH SCROLL + ACTIVE NAV LINK JAVASCRIPT
+       Native JavaScript (no library) that:
+         1. Highlights the active nav link on scroll.
+         2. Closes the mobile menu after a link is clicked.
+  ====================================================== -->
+  <script>
+    // --- 1. Close mobile menu when a nav link is clicked ---
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('navMenu');
+        // Bootstrap collapse instance — hide the menu
+        const bsCollapse = bootstrap.Collapse.getInstance(menu);
+        if (bsCollapse) bsCollapse.hide();
+      });
+    });
+
+    // --- 2. Highlight active nav link based on scroll position ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(
+            `.nav-link[href="#${entry.target.id}"]`
+          );
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>

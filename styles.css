@@ -1,0 +1,581 @@
+/* ================================================================
+   styles.css  –  Helena Nakato Portfolio  |  Custom Stylesheet
+   ----------------------------------------------------------------
+   IMPORTANT: This file is linked AFTER bootstrap.min.css in the
+   <head> so every rule here can override Bootstrap's defaults.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES  (CSS Variables)
+   Defining our 4-colour palette once here so we only need to
+   change it in one place if we want a new theme.
+   ---------------------------------------------------------------- */
+:root {
+  --color-bg-dark:   #1a1a2e;   /* Deep midnight blue  – main background     */
+  --color-bg-mid:    #16213e;   /* Slightly lighter    – section alternates   */
+  --color-bg-card:   #0f3460;   /* Navy blue           – card backgrounds     */
+  --color-accent:    #e94560;   /* Vivid red/coral     – highlights & buttons */
+  --color-text:      #ccd6f6;   /* Light blue-white    – body text            */
+  --color-text-muted:#8892b0;   /* Muted slate         – secondary text       */
+  --color-white:     #f0f0f0;   /* Off-white           – headings             */
+  --font-heading:    'Poppins', sans-serif;
+  --font-body:       'Open Sans', sans-serif;
+  --navbar-height:   72px;
+  --border-radius:   12px;
+  --transition:      0.3s ease;
+}
+
+/* ----------------------------------------------------------------
+   2. BASE / RESET
+   Apply our fonts and background to the whole page.
+   Bootstrap sets font-family on <body>, so we override it here.
+   ---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Offset fixed navbar height when jumping to anchor links */
+  scroll-padding-top: var(--navbar-height);
+  scroll-behavior: smooth;          /* smooth anchor scrolling     */
+}
+
+body {
+  font-family: var(--font-body);    /* Override Bootstrap's font   */
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* Headings use Poppins */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-white);
+}
+
+/* ----------------------------------------------------------------
+   3. UTILITY: HIGHLIGHT SPAN
+   Wraps a word in accent colour for section headings, e.g.:
+   <h2>About <span class="highlight">Me</span></h2>
+   ---------------------------------------------------------------- */
+.highlight {
+  color: var(--color-accent);
+}
+
+/* ----------------------------------------------------------------
+   4. SECTION TITLE  (reused across all sections)
+   ---------------------------------------------------------------- */
+.section-title h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);  /* responsive font size  */
+  letter-spacing: 1px;
+}
+
+/* Short decorative underline beneath each section headline */
+.title-underline {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+/* Alternate background colour for every other section */
+.about-section,
+.contact-section {
+  background-color: var(--color-bg-mid);
+}
+
+/* ----------------------------------------------------------------
+   5. NAVBAR
+   Override Bootstrap's default white bg with our dark theme.
+   ---------------------------------------------------------------- */
+.custom-navbar {
+  background-color: rgba(26, 26, 46, 0.95);   /* slightly translucent */
+  backdrop-filter: blur(10px);                 /* frosted-glass effect */
+  border-bottom: 1px solid rgba(233, 69, 96, 0.15);
+  padding: 16px 0;
+  transition: background-color var(--transition);
+}
+
+/* Brand text */
+.custom-navbar .navbar-brand {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-white) !important;
+  letter-spacing: 1px;
+}
+
+.brand-dot {
+  color: var(--color-accent);
+}
+
+/* Nav links */
+.custom-navbar .nav-link {
+  color: var(--color-text) !important;
+  font-weight: 500;
+  padding: 6px 14px !important;
+  border-radius: 6px;
+  transition: all var(--transition);
+  position: relative;
+}
+
+/* Underline animation on hover */
+.custom-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+.custom-navbar .nav-link:hover::after,
+.custom-navbar .nav-link.active::after {
+  width: 60%;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+  color: var(--color-white) !important;
+}
+
+/* Hamburger icon colour override */
+.custom-navbar .navbar-toggler {
+  border-color: var(--color-accent);
+}
+.custom-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ----------------------------------------------------------------
+   6. HERO SECTION
+   ---------------------------------------------------------------- */
+.hero-section {
+  min-height: 100vh;               /* fills the whole viewport    */
+  padding-top: calc(var(--navbar-height) + 40px);
+  padding-bottom: 60px;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-dark) 0%,
+    var(--color-bg-mid) 60%,
+    #0f3460 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background circle */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(233, 69, 96, 0.12) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-greeting {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.hero-bio {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+}
+
+/* Profile image: circular, glowing border */
+.hero-image-wrapper {
+  display: inline-block;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent), #0f3460);
+  box-shadow: 0 0 40px rgba(233, 69, 96, 0.4);
+}
+
+.hero-img {
+  border-radius: 50%;
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   7. CUSTOM BUTTONS
+   Override Bootstrap's .btn-primary (default is blue #0d6efd).
+   ---------------------------------------------------------------- */
+.custom-btn.btn-primary,
+.btn-primary.custom-btn {
+  background-color: var(--color-accent);
+  border-color:     var(--color-accent);
+  color:            var(--color-white);
+  border-radius:    8px;
+  font-weight:      600;
+  padding:          10px 26px;
+  transition:       all var(--transition);
+  box-shadow:       0 4px 15px rgba(233, 69, 96, 0.35);
+  font-family:      var(--font-heading);
+}
+
+.custom-btn.btn-primary:hover,
+.btn-primary.custom-btn:hover {
+  background-color: transparent;
+  border-color:     var(--color-accent);
+  color:            var(--color-accent);
+  box-shadow:       0 4px 20px rgba(233, 69, 96, 0.5);
+  transform:        translateY(-2px);
+}
+
+/* Outline variant (hero secondary CTA) */
+.outline-btn {
+  border-color: var(--color-text);
+  color:        var(--color-text) !important;
+  border-radius: 8px;
+  font-weight:  600;
+  padding:      10px 26px;
+  transition:   all var(--transition);
+  font-family:  var(--font-heading);
+}
+
+.outline-btn:hover {
+  border-color:     var(--color-accent);
+  color:            var(--color-accent) !important;
+  background-color: transparent;
+  transform:        translateY(-2px);
+}
+
+/* ----------------------------------------------------------------
+   8. ABOUT SECTION
+   ---------------------------------------------------------------- */
+.about-section {
+  padding: 100px 0;
+}
+
+.about-img {
+  border-radius: var(--border-radius);
+  border: 3px solid var(--color-accent);
+  box-shadow: 0 8px 40px rgba(233, 69, 96, 0.25);
+  max-width: 320px;
+}
+
+.about-bio {
+  color: var(--color-text-muted);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+/* Skill Badges — override Bootstrap's default badge colour */
+.skill-badge {
+  background-color: rgba(233, 69, 96, 0.15) !important;
+  color:            var(--color-accent) !important;
+  border:           1px solid rgba(233, 69, 96, 0.35);
+  border-radius:    20px;
+  padding:          6px 14px;
+  font-size:        0.82rem;
+  font-weight:      500;
+  transition:       all var(--transition);
+  font-family:      var(--font-body);
+}
+
+.skill-badge:hover {
+  background-color: var(--color-accent) !important;
+  color:            var(--color-white) !important;
+  transform:        translateY(-2px);
+}
+
+/* Soft Skills list — override Bootstrap list-group defaults */
+.soft-skills-list {
+  background: transparent;
+}
+
+.soft-skill-item {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.07) !important;
+  color: var(--color-text) !important;
+  padding: 10px 0;
+  font-weight: 500;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+/* ----------------------------------------------------------------
+   9. PROJECTS SECTION
+   ---------------------------------------------------------------- */
+.projects-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-dark);
+}
+
+/* Bootstrap Card override */
+.project-card {
+  background-color: var(--color-bg-card) !important;
+  border: 1px solid rgba(233, 69, 96, 0.15) !important;
+  border-radius: var(--border-radius) !important;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(233, 69, 96, 0.25) !important;
+}
+
+.project-card .card-img-top {
+  height: 190px;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(233, 69, 96, 0.2);
+}
+
+.project-card .card-body {
+  padding: 24px;
+}
+
+.project-card .card-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-white);
+  margin-bottom: 10px;
+}
+
+.project-card .card-text {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Small badge on each card showing the tech stack */
+.project-tag {
+  background-color: rgba(233, 69, 96, 0.15) !important;
+  color:            var(--color-accent) !important;
+  font-size:        0.73rem;
+  border-radius:    20px;
+  padding:          4px 10px;
+  align-self:       flex-start;
+}
+
+/* Project card outline secondary button */
+.project-card .btn-outline-secondary {
+  border-color: rgba(255, 255, 255, 0.2);
+  color:        var(--color-text);
+  border-radius: 6px;
+  font-size:    0.85rem;
+  transition:   all var(--transition);
+}
+
+.project-card .btn-outline-secondary:hover {
+  border-color: var(--color-accent);
+  color:        var(--color-accent);
+  background:   transparent;
+}
+
+/* ----------------------------------------------------------------
+   10. CONTACT SECTION
+   ---------------------------------------------------------------- */
+.contact-section {
+  padding: 100px 0;
+}
+
+.contact-info {
+  padding: 30px;
+  background: var(--color-bg-card);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(233, 69, 96, 0.15);
+  height: 100%;
+}
+
+.contact-info h5 {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+}
+
+.contact-item {
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(233, 69, 96, 0.15);
+  color: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Social icon circle links in contact section */
+.social-link {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(233, 69, 96, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent) !important;
+  font-size: 1.2rem;
+  transition: all var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white) !important;
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+/* Contact form card */
+.contact-form {
+  background-color: var(--color-bg-card);
+  border: 1px solid rgba(233, 69, 96, 0.15);
+  border-radius: var(--border-radius);
+  padding: 36px;
+}
+
+/* Override Bootstrap's .form-label colour */
+.contact-form .form-label {
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* Override Bootstrap's .form-control */
+.custom-input.form-control {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color:     rgba(255, 255, 255, 0.12) !important;
+  color:            var(--color-white) !important;
+  border-radius:    8px !important;
+  padding:          12px 16px !important;
+  font-size:        0.95rem;
+  transition:       border-color var(--transition), box-shadow var(--transition);
+}
+
+/* Focus ring — replace Bootstrap's blue outline with accent */
+.custom-input.form-control:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow:   0 0 0 3px rgba(233, 69, 96, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.09) !important;
+  outline: none;
+}
+
+.custom-input.form-control::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------------
+   11. FOOTER
+   ---------------------------------------------------------------- */
+.site-footer {
+  background-color: #0d0d1a;
+  border-top: 1px solid rgba(233, 69, 96, 0.15);
+}
+
+.footer-copy {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+/* Footer social icon links */
+.footer-social-link {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted) !important;
+  font-size: 1rem;
+  transition: all var(--transition);
+}
+
+.footer-social-link:hover {
+  border-color:     var(--color-accent);
+  color:            var(--color-accent) !important;
+  transform:        translateY(-3px);
+}
+
+/* ----------------------------------------------------------------
+   12. RESPONSIVE OVERRIDES (mobile-first top-ups)
+   ---------------------------------------------------------------- */
+
+/* On mobile, reduce some padding */
+@media (max-width: 576px) {
+  .hero-name {
+    font-size: 2.4rem;
+  }
+
+  .contact-form {
+    padding: 24px 18px;
+  }
+
+  .hero-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-section,
+  .projects-section,
+  .contact-section {
+    padding: 60px 0;
+  }
+}
+
+/* Tablet */
+@media (min-width: 577px) and (max-width: 991px) {
+  .hero-img {
+    width: 240px;
+    height: 240px;
+  }
+}
